@@ -42,8 +42,12 @@ int main()
 
     //ordenarPorTipo(listaMascota,MASCOTAS,listaCliente,CLIENTES);
 
-    modificarCliente(listaCliente,CLIENTES);
+    //modificarCliente(listaCliente,CLIENTES);
 
-    imprimirListaEcliente(listaCliente,CLIENTES);
+    //imprimirListaEcliente(listaCliente,CLIENTES);
+
+    imprimirClientesVariasMascotas(listaCliente,CLIENTES,listaMascota,MASCOTAS,2);
+
+
     return 0;
 }

@@ -15,3 +15,6 @@ void imprimirMascotaCD(Emascota,Ecliente [],int);
 
 void ordenarPorTipo(Emascota [],int ,Ecliente[],int);
 
+void imprimirClientesVariasMascotas(Ecliente [],int,Emascota [],int,int);
+
+

@@ -178,3 +178,25 @@ void ordenarPorTipo(Emascota listaMascota[],int tamMascota,Ecliente listaCliente
     imprimirListaEmascotaCD(listaMascota,tamMascota,listaCliente,tamCliente);
 }
 
+void imprimirClientesVariasMascotas(Ecliente listaCliente[],int tamCliente,Emascota listaMascota[],int tamMascota,int masDe)
+{
+    int i,j,cant;
+    for(i=0;i<tamCliente;i++)
+    {
+        cant = 0;
+        if(listaCliente[i].isEmpty == 0)
+        {
+            for(j=0;j<tamMascota;j++)
+            {
+                if(listaCliente[i].id == listaMascota[j].idDueno)
+                {
+                    cant ++;
+                }
+            }
+            if(cant > masDe)
+            {
+                imprimirEcliente(listaCliente[i]);
+            }
+        }
+    }
+}
