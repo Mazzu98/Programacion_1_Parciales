@@ -36,8 +36,10 @@ int main()
 
     //borrarCliente(listaCliente,CLIENTES,listaMascota,MASCOTAS);
 
-    modificarMascota(listaMascota,MASCOTAS,listaCliente,CLIENTES);
+    //modificarMascota(listaMascota,MASCOTAS,listaCliente,CLIENTES);
 
-    imprimirListaEmascota(listaMascota,MASCOTAS,listaCliente,CLIENTES);
+    //imprimirListaEmascotaCD(listaMascota,MASCOTAS,listaCliente,CLIENTES);
+
+    ordenarPorTipo(listaMascota,MASCOTAS,listaCliente,CLIENTES);
     return 0;
 }

@@ -69,7 +69,6 @@ void imprimirListaEcliente(Ecliente lista[],int tam)
     {
         if(lista[i].isEmpty == 0)
         {
-            //printf("id:%d\t%s\t%s\t%s\t%d\t%d\t%c\n",lista[i].id,lista[i].nombre,lista[i].apellido,lista[i].localidad,lista[i].tel,lista[i].edad,lista[i].sexo);
             imprimirEcliente(lista[i]);
         }
     }
