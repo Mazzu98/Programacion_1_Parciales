@@ -26,7 +26,7 @@ int main()
     hardCodeEmascota(listaMascota,MASCOTAS,"guau",2,"labrado",6,9,'m',4);
     hardCodeEmascota(listaMascota,MASCOTAS,"miau",1,"dsad",6,9,'m',5);
     hardCodeEmascota(listaMascota,MASCOTAS,"miau",1,"asdd",6,9,'m',5);
-    hardCodeEmascota(listaMascota,MASCOTAS,"guau",2,"bulldog",6,9,'m',5);
+    hardCodeEmascota(listaMascota,MASCOTAS,"guau",2,"bulldog",2,9,'m',5);
 
     //addMascota(listaMascota,MASCOTAS,listaCliente,CLIENTES);
 
@@ -46,7 +46,9 @@ int main()
 
     //imprimirListaEcliente(listaCliente,CLIENTES);
 
-    imprimirClientesVariasMascotas(listaCliente,CLIENTES,listaMascota,MASCOTAS,2);
+    //imprimirClientesVariasMascotas(listaCliente,CLIENTES,listaMascota,MASCOTAS,2);
+
+    imprimirMascotasSiEsMayorA(listaCliente,CLIENTES,listaMascota,MASCOTAS,3);
 
 
     return 0;

@@ -17,4 +17,4 @@ void ordenarPorTipo(Emascota [],int ,Ecliente[],int);
 
 void imprimirClientesVariasMascotas(Ecliente [],int,Emascota [],int,int);
 
-
+void imprimirMascotasSiEsMayorA(Ecliente [],int,Emascota [],int,int);

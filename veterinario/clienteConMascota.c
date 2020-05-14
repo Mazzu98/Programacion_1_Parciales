@@ -200,3 +200,15 @@ void imprimirClientesVariasMascotas(Ecliente listaCliente[],int tamCliente,Emasc
         }
     }
 }
+
+void imprimirMascotasSiEsMayorA(Ecliente listaCliente[],int tamCliente,Emascota listaMascota[],int tamMascota,int mayorDe)
+{
+    int i;
+    for(i=0;i<tamMascota;i++)
+    {
+        if(listaMascota[i].isEmpty == 0 && listaMascota[i].edad > mayorDe)
+        {
+            imprimirMascotaCD(listaMascota[i],listaCliente,tamCliente);
+        }
+    }
+}
