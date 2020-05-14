@@ -1,0 +1,13 @@
+printf("\t\t%d\t%s\t",listaMascota[j].id,listaMascota[j].nombre);
+                    switch(listaMascota[j].tipo)
+                    {
+                        case 1: printf("gato\t");
+                            break;
+                        case 2: printf("perro\t");
+                            break;
+                        case 3: printf("raro\t");
+                            break;
+                    }
+                    printf("%s\t\t%d\t%.2f\t%c\n",listaMascota[j].raza,listaMascota[j].edad,listaMascota[j].peso,listaMascota[j].sexo);
+                }
+            }

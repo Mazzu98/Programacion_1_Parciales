@@ -1,0 +1,72 @@
+# depslib dependency file v1.0
+1589240139 source:z:\software\code blocks\c projects\practica\wasa\veterinario\entradavalidada.c
+	"entradaValidada.h"
+
+1589240145 z:\software\code blocks\c projects\practica\wasa\veterinario\entradavalidada.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1589288923 source:z:\software\code blocks\c projects\practica\wasa\veterinario\main.c
+	<stdio.h>
+	<stdlib.h>
+	"clienteConMascota.h"
+
+1589286321 z:\software\code blocks\c projects\practica\wasa\veterinario\cliente.h
+	<stdio.h>
+	<string.h>
+
+1589289226 source:z:\software\code blocks\c projects\practica\wasa\veterinario\cliente.c
+	"cliente.h"
+
+1589291045 source:z:\software\code blocks\c projects\practica\wasa\veterinario\mascota.c
+	"mascota.h"
+
+1589284842 z:\software\code blocks\c projects\practica\wasa\veterinario\mascota.h
+	"entradaValidada.h"
+	<stdio.h>
+	<string.h>
+
+1589290942 source:z:\software\code blocks\c projects\practica\wasa\veterinario\clienteconmascota.c
+	"clienteConMascota.h"
+
+1589289268 z:\software\code blocks\c projects\practica\wasa\veterinario\clienteconmascota.h
+	"cliente.h"
+	"mascota.h"
+
+1589493539 source:c:\users\juan\documents\c projects\veterinario\cliente.c
+	"cliente.h"
+	"entradaValidada.h"
+
+1589493319 c:\users\juan\documents\c projects\veterinario\cliente.h
+	<stdio.h>
+	<string.h>
+
+1589494301 source:c:\users\juan\documents\c projects\veterinario\clienteconmascota.c
+	"clienteConMascota.h"
+
+1589492462 c:\users\juan\documents\c projects\veterinario\clienteconmascota.h
+	"cliente.h"
+	"mascota.h"
+
+1589293632 c:\users\juan\documents\c projects\veterinario\mascota.h
+	"entradaValidada.h"
+	<stdio.h>
+	<string.h>
+
+1589240145 c:\users\juan\documents\c projects\veterinario\entradavalidada.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1589240139 source:c:\users\juan\documents\c projects\veterinario\entradavalidada.c
+	"entradaValidada.h"
+
+1589494105 source:c:\users\juan\documents\c projects\veterinario\main.c
+	<stdio.h>
+	<stdlib.h>
+	"clienteConMascota.h"
+
+1589293577 source:c:\users\juan\documents\c projects\veterinario\mascota.c
+	"mascota.h"
+
