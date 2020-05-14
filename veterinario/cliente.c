@@ -80,7 +80,6 @@ void imprimirEcliente(Ecliente cliente)
     printf("%d%10s%11s%11s%10d%6d%6c\n",cliente.id,cliente.nombre,cliente.apellido,cliente.localidad,cliente.tel,cliente.edad,cliente.sexo);
 }
 
-
 int findEclienteById(Ecliente list[], int len,int id)
 {
     int i, index = -1;
@@ -116,3 +115,41 @@ int altaCliente(Ecliente listaCliente[],int tamCliente)
     }
     return index;
 }
+
+int modificarCliente(Ecliente listaCliente[],int tamCliente)
+{
+    int id, index, opcion;
+    imprimirListaEcliente(listaCliente,tamCliente);
+    id = getInt("Ingrese el id de el cliente a modificar: ");
+    index = findEclienteById(listaCliente,tamCliente,id);
+    if(index != -1)
+    {
+        do{
+        printf("\n1. Modificar nombre\n2. Modificar apellido\n3. Modificar localidad\n4. Modificar telefono\n5. Modificar edad\n6. Modificar sexo\n7. Cancelar\n");
+        opcion = getInt("Ingrese una opcion: ");
+        switch(opcion)
+        {
+            case 1: getOLString("Ingrese nuevo nombre: ",listaCliente[index].nombre);
+                break;
+            case 2: getOLString("Ingrese nuevo apellido: ",listaCliente[index].apellido);
+                break;
+            case 3: getOLString("Ingrese nueva localidad: ",listaCliente[index].localidad);
+                break;
+            case 4: listaCliente[index].tel = getInt("Ingrese nuevo telefono: ");
+                break;
+            case 5: listaCliente[index].edad = getInt("Ingrese nueva edad: ");
+                break;
+            case 6: do{
+                        printf("ingrese nuevo sexo f(femenino) m(masculino): ");
+                        fflush(stdin);
+                        listaCliente[index].sexo = getchar();
+                    }while(listaCliente[index].sexo != 'f' && listaCliente[index].sexo != 'm');
+                    break;
+            case 7: return -1;
+                break;
+        }
+        }while(opcion < 1 || opcion > 7 );
+    }
+    return index;
+}
+int modificarDueno(Ecliente [],int);

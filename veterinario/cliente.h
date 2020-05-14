@@ -30,4 +30,5 @@ int findEclienteById(Ecliente [], int ,int );
 
 int altaCliente(Ecliente [],int );
 
+int modificarCliente(Ecliente [],int);
 

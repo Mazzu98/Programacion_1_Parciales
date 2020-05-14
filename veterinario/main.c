@@ -40,6 +40,10 @@ int main()
 
     //imprimirListaEmascotaCD(listaMascota,MASCOTAS,listaCliente,CLIENTES);
 
-    ordenarPorTipo(listaMascota,MASCOTAS,listaCliente,CLIENTES);
+    //ordenarPorTipo(listaMascota,MASCOTAS,listaCliente,CLIENTES);
+
+    modificarCliente(listaCliente,CLIENTES);
+
+    imprimirListaEcliente(listaCliente,CLIENTES);
     return 0;
 }
