@@ -212,3 +212,15 @@ void imprimirMascotasSiEsMayorA(Ecliente listaCliente[],int tamCliente,Emascota 
         }
     }
 }
+
+void listarMascotaPorTipo(Emascota listaMascota[],int tamMascota,Ecliente listaCliente[],int tamCliente,int tipo)
+{
+    int i;
+    for(i=0;i<tamMascota;i++)
+    {
+        if(listaMascota[i].isEmpty == 0 && listaMascota[i].tipo == tipo)
+        {
+            imprimirMascotaCD(listaMascota[i],listaCliente,tamCliente);
+        }
+    }
+}

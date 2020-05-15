@@ -86,12 +86,12 @@
 1589240139 source:c:\users\juan\documents\c projects\proyectos git\veterinario\entradavalidada.c
 	"entradaValidada.h"
 
-1589499414 source:c:\users\juan\documents\c projects\proyectos git\veterinario\main.c
+1589500274 source:c:\users\juan\documents\c projects\proyectos git\veterinario\main.c
 	<stdio.h>
 	<stdlib.h>
 	"clienteConMascota.h"
 
-1589500041 c:\users\juan\documents\c projects\proyectos git\veterinario\clienteconmascota.h
+1589500478 c:\users\juan\documents\c projects\proyectos git\veterinario\clienteconmascota.h
 	"cliente.h"
 	"mascota.h"
 
@@ -103,6 +103,6 @@
 1589293577 source:c:\users\juan\documents\c projects\proyectos git\veterinario\mascota.c
 	"mascota.h"
 
-1589500157 source:c:\users\juan\documents\c projects\proyectos git\veterinario\clienteconmascota.c
+1589500703 source:c:\users\juan\documents\c projects\proyectos git\veterinario\clienteconmascota.c
 	"clienteConMascota.h"
 

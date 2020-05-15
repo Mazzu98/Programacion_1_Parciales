@@ -48,7 +48,9 @@ int main()
 
     //imprimirClientesVariasMascotas(listaCliente,CLIENTES,listaMascota,MASCOTAS,2);
 
-    imprimirMascotasSiEsMayorA(listaCliente,CLIENTES,listaMascota,MASCOTAS,3);
+    //imprimirMascotasSiEsMayorA(listaCliente,CLIENTES,listaMascota,MASCOTAS,3);
+
+    listarMascotaPorTipo(listaMascota,MASCOTAS,listaCliente,CLIENTES,2);
 
 
     return 0;

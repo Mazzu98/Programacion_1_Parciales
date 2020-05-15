@@ -153,3 +153,4 @@ int modificarCliente(Ecliente listaCliente[],int tamCliente)
     return index;
 }
 int modificarDueno(Ecliente [],int);
+
