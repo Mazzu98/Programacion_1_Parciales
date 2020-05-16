@@ -32,3 +32,5 @@ void listarMascotaPorTipo(Emascota [],int,Ecliente[],int,int); //13
 void ordenarDuenoPorCantidades(Ecliente [],int);
 
 void ordenarDuenoPorCantidadesYalfabeto(Ecliente [],int);
+
+void mensaje(int,char [],char []);

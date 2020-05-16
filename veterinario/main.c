@@ -15,9 +15,11 @@ int main()
 
     //addMascota(listaMascota,MASCOTAS,listaCliente,CLIENTES);
 
-    bajaMascota(listaMascota,MASCOTAS,listaCliente,CLIENTES);
+    //bajaMascota(listaMascota,MASCOTAS,listaCliente,CLIENTES);
 
     imprimirListaEcliente(listaCliente,CLIENTES);
+
+    //printf("\n\n %.2f",promEdadMascotasTipo(listaMascota,MASCOTAS,1));
 
     //imprimirClientesConMascota(listaCliente,CLIENTES,listaMascota,MASCOTAS);
 

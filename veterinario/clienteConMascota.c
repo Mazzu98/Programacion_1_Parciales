@@ -70,6 +70,7 @@ void imprimirClientesConMascota(Ecliente listaCliente[],int tamCliente,Emascota 
         }
     }
 }
+
 void imprimirListaEmascotaCD(Emascota listaMascota[],int tam,Ecliente listaCliente[],int tamCliente)
 {
     int i;
@@ -333,4 +334,15 @@ void ordenarDuenoPorCantidadesYalfabeto(Ecliente listaCliente[],int tamCliente)
     imprimirListaEcliente(listaCliente,tamCliente);
 }
 
+void mensaje(int num,char bien[],char mal[])
+{
+    if(num == -1)
+    {
+        printf("\n%s\n",mal);
+    }
+    else if(num == 0)
+    {
+        printf("\n%s\n",bien);
+    }
+}
 

@@ -54,4 +54,36 @@ int findEmascotaById(Emascota list[], int len,int id)
     return index;
 }
 
+float promEdadMascotas(Emascota listaMascota[], int tamMascota)
+{
+    int i,suma = 0,cont = 0;
+    float prom;
 
+    for(i=0;i<tamMascota;i++)
+    {
+        if(listaMascota[i].isEmpty == 0)
+        {
+            suma += listaMascota[i].edad;
+            cont++;
+        }
+    }
+    prom = (float)suma/cont;
+    return prom;
+}
+
+float promEdadMascotasTipo(Emascota listaMascota[], int tamMascota,int tipo)
+{
+    int i,suma = 0,cont = 0;
+    float prom;
+
+    for(i=0;i<tamMascota;i++)
+    {
+        if(listaMascota[i].isEmpty == 0 && listaMascota[i].tipo == tipo)
+        {
+            suma += listaMascota[i].edad;
+            cont++;
+        }
+    }
+    prom = (float)suma/cont;
+    return prom;
+}

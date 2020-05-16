@@ -22,4 +22,6 @@ int newIdEmascota(Emascota [],int );
 
 int findEmascotaById(Emascota [], int ,int );
 
+float promEdadMascotas(Emascota [], int);
 
+float promEdadMascotasTipo(Emascota [], int,int);

@@ -87,7 +87,7 @@ void imprimirListaEcliente(Ecliente lista[],int tam)
 
 void imprimirEcliente(Ecliente cliente)
 {
-    printf("%d%10s%11s%11s%10d%6d%6c\t\t%d\n",cliente.id,cliente.nombre,cliente.apellido,cliente.localidad,cliente.tel,cliente.edad,cliente.sexo,cliente.cantMascotas);
+    printf("%d%10s%11s%11s%10d%6d%6c\n",cliente.id,cliente.nombre,cliente.apellido,cliente.localidad,cliente.tel,cliente.edad,cliente.sexo);
 }
 
 int findEclienteById(Ecliente list[], int len,int id)
