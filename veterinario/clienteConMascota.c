@@ -1,5 +1,46 @@
 #include "clienteConMascota.h"
 
+int hardCodeEmascota(Emascota list[], int len,Ecliente listaCliente[],int tamCliente,char nombre[],int tipo,char raza[],int edad,float peso,char sexo,int idDueno)
+{
+    int index,indexCliente;
+    index = getEmptyPositionEmascota(list,len);
+    if(index != -1 )
+    {
+        list[index].id = newIdEmascota(list,len);
+        strcpy(list[index].nombre,nombre);
+        list[index].tipo = tipo;
+        strcpy(list[index].raza,raza);
+        list[index].edad = edad;
+        list[index].peso = peso;
+        list[index].sexo = sexo;
+        list[index].idDueno = idDueno;
+        list[index].isEmpty = 0;
+        indexCliente = findEclienteById(listaCliente,tamCliente,list[index].idDueno);
+        listaCliente[indexCliente].cantMascotas ++;
+        return 0;
+    }
+    else
+    {
+        return -1;
+    }
+    return -1;
+}
+
+void hardCodeInicialMascotas(Emascota listaMascota[],int tam,Ecliente listaCliente[],int tamCliente)
+{
+    hardCodeEmascota(listaMascota,tam,listaCliente,tamCliente,"miau",1,"ksl",6,9,'f',1);
+    hardCodeEmascota(listaMascota,tam,listaCliente,tamCliente,"gatex",1,"fdg",5,3,'f',1);
+    hardCodeEmascota(listaMascota,tam,listaCliente,tamCliente,"guau",2,"dsfs",9,6,'m',2);
+    hardCodeEmascota(listaMascota,tam,listaCliente,tamCliente,"guau",2,"sdf",2,2,'m',2);
+    hardCodeEmascota(listaMascota,tam,listaCliente,tamCliente,"miau",1,"fgd",3,6,'m',2);
+    hardCodeEmascota(listaMascota,tam,listaCliente,tamCliente,"guau",2,"pitbull",4,2,'m',3);
+    hardCodeEmascota(listaMascota,tam,listaCliente,tamCliente,"zzzz",3,"gfsdgfg",3,0.5,'m',3);
+    hardCodeEmascota(listaMascota,tam,listaCliente,tamCliente,"guau",2,"labrado",6,9,'m',4);
+    hardCodeEmascota(listaMascota,tam,listaCliente,tamCliente,"miau",1,"dsad",6,9,'m',5);
+    hardCodeEmascota(listaMascota,tam,listaCliente,tamCliente,"miau",1,"asdd",6,9,'m',5);
+    hardCodeEmascota(listaMascota,tam,listaCliente,tamCliente,"guau",2,"bulldog",2,9,'m',5);
+}
+
 void imprimirClientesConMascota(Ecliente listaCliente[],int tamCliente,Emascota listaMascota[],int tamMascota)
 {
     int i,j;
@@ -43,7 +84,7 @@ void imprimirListaEmascotaCD(Emascota listaMascota[],int tam,Ecliente listaClien
 }
 
 int addMascota(Emascota listaMascota[], int tamMascota,Ecliente listaCliente[], int tamCliente )
-    {
+{
         int indexMascota,id,indexCliente;
         indexMascota = getEmptyPositionEmascota(listaMascota,tamMascota);
         if(indexMascota != -1 )
@@ -69,9 +110,14 @@ int addMascota(Emascota listaMascota[], int tamMascota,Ecliente listaCliente[], 
                 {
                     printf("\n\nerror: ingrese nuevamente\n\n");
                 }
+                else
+                {
+                    listaCliente[indexCliente].cantMascotas ++;
+                }
             }while(indexCliente == -1);
             listaMascota[indexMascota].idDueno = id;
             listaMascota[indexMascota].isEmpty = 0;
+
             return 0;
         }
         else
@@ -80,6 +126,22 @@ int addMascota(Emascota listaMascota[], int tamMascota,Ecliente listaCliente[], 
         }
         return -1;
     }
+
+int bajaMascota(Emascota listaMascota[],int tamMascota,Ecliente listaCliente[],int tamCliente)
+{
+    int indexMascota,id,indexCliente;
+    id = getInt("ingrese id de la mascota: ");
+    indexMascota = findEmascotaById(listaMascota,tamMascota,id);
+    if(indexMascota != -1)
+    {
+        listaMascota[indexMascota].isEmpty = 1;
+        indexCliente = findEclienteById(listaCliente,tamCliente,listaMascota[indexMascota].idDueno);
+        listaCliente[indexCliente].cantMascotas --;
+        return 0;
+    }
+
+    return indexMascota;
+}
 
 int modificarMascota(Emascota listaMascota[],int tamMascota,Ecliente listaCliente[], int tamCliente)
 {
@@ -224,3 +286,51 @@ void listarMascotaPorTipo(Emascota listaMascota[],int tamMascota,Ecliente listaC
         }
     }
 }
+
+void ordenarDuenoPorCantidades(Ecliente listaCliente[],int tamCliente)
+{
+    int i,j;
+    Ecliente aux;
+
+    for(i=0;i<tamCliente-1;i++)
+    {
+        for(j=i+1;j<tamCliente;j++)
+        {
+            if(listaCliente[i].cantMascotas > listaCliente[j].cantMascotas)
+            {
+                aux = listaCliente[i];
+                listaCliente[i] = listaCliente[j];
+                listaCliente[j] = aux;
+            }
+        }
+    }
+    imprimirListaEcliente(listaCliente,tamCliente);
+}
+
+void ordenarDuenoPorCantidadesYalfabeto(Ecliente listaCliente[],int tamCliente)
+{
+    int i,j;
+    Ecliente aux;
+
+    for(i=0;i<tamCliente-1;i++)
+    {
+        for(j=i+1;j<tamCliente;j++)
+        {
+            if(listaCliente[i].cantMascotas > listaCliente[j].cantMascotas)
+            {
+                aux = listaCliente[i];
+                listaCliente[i] = listaCliente[j];
+                listaCliente[j] = aux;
+            }
+            else if(listaCliente[i].cantMascotas == listaCliente[j].cantMascotas && strcmp(listaCliente[i].nombre,listaCliente[j].nombre) > 0)
+            {
+                aux = listaCliente[i];
+                listaCliente[i] = listaCliente[j];
+                listaCliente[j] = aux;
+            }
+        }
+    }
+    imprimirListaEcliente(listaCliente,tamCliente);
+}
+
+

@@ -8,29 +8,16 @@ int main()
     Ecliente listaCliente[CLIENTES];
     Emascota listaMascota[MASCOTAS];
     initEcliente(listaCliente,CLIENTES);
-    initEmascota(listaMascota,MASCOTAS);
+    initEmascota(listaMascota,MASCOTAS,listaCliente,CLIENTES);
 
-    hardCodeEcliente(listaCliente,CLIENTES,"Marcela","pipi","jaja",324567,43,'f');
-    hardCodeEcliente(listaCliente,CLIENTES,"Hector","ksdkd","kasj",356454,66,'m');
-    hardCodeEcliente(listaCliente,CLIENTES,"Camila","lopez","jtah",804354,27,'f');
-    hardCodeEcliente(listaCliente,CLIENTES,"Tomas","sala","idjhas",847404,20,'m');
-    hardCodeEcliente(listaCliente,CLIENTES,"Jorge","jfdi","kfiedk",849374,51,'m');
-
-    hardCodeEmascota(listaMascota,MASCOTAS,"miau",1,"ksl",6,9,'f',1);
-    hardCodeEmascota(listaMascota,MASCOTAS,"gatex",1,"fdg",5,3,'f',1);
-    hardCodeEmascota(listaMascota,MASCOTAS,"guau",2,"dsfs",9,6,'m',2);
-    hardCodeEmascota(listaMascota,MASCOTAS,"guau",2,"sdf",2,2,'m',2);
-    hardCodeEmascota(listaMascota,MASCOTAS,"miau",1,"fgd",3,6,'m',2);
-    hardCodeEmascota(listaMascota,MASCOTAS,"guau",2,"pitbull",4,2,'m',3);
-    hardCodeEmascota(listaMascota,MASCOTAS,"zzzz",3,"ksl",5,7,'f',3);
-    hardCodeEmascota(listaMascota,MASCOTAS,"guau",2,"labrado",6,9,'m',4);
-    hardCodeEmascota(listaMascota,MASCOTAS,"miau",1,"dsad",6,9,'m',5);
-    hardCodeEmascota(listaMascota,MASCOTAS,"miau",1,"asdd",6,9,'m',5);
-    hardCodeEmascota(listaMascota,MASCOTAS,"guau",2,"bulldog",2,9,'m',5);
+    hardCodeInicialCliente(listaCliente,CLIENTES);
+    hardCodeInicialMascotas(listaMascota,MASCOTAS,listaCliente,CLIENTES);
 
     //addMascota(listaMascota,MASCOTAS,listaCliente,CLIENTES);
 
-    //imprimirListaEcliente(listaCliente,CLIENTES);
+    bajaMascota(listaMascota,MASCOTAS,listaCliente,CLIENTES);
+
+    imprimirListaEcliente(listaCliente,CLIENTES);
 
     //imprimirClientesConMascota(listaCliente,CLIENTES,listaMascota,MASCOTAS);
 
@@ -50,7 +37,9 @@ int main()
 
     //imprimirMascotasSiEsMayorA(listaCliente,CLIENTES,listaMascota,MASCOTAS,3);
 
-    listarMascotaPorTipo(listaMascota,MASCOTAS,listaCliente,CLIENTES,2);
+    //listarMascotaPorTipo(listaMascota,MASCOTAS,listaCliente,CLIENTES,2);
+
+    //ordenarDuenoPorCantidadesYalfabeto(listaCliente,CLIENTES);
 
 
     return 0;

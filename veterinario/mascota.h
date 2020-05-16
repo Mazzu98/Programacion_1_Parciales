@@ -16,15 +16,9 @@ typedef struct
     int isEmpty;
 }Emascota;
 
-int initEmascota(Emascota [], int );
-
-int hardCodeEmascota(Emascota [], int ,char [],int,char [],int ,float ,char ,int);
-
 int getEmptyPositionEmascota(Emascota [],int );
 
 int newIdEmascota(Emascota [],int );
-
-int bajaMascota(Emascota [],int );
 
 int findEmascotaById(Emascota [], int ,int );
 

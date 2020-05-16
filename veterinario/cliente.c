@@ -54,14 +54,24 @@ int hardCodeEcliente(Ecliente list[], int len,char nombre[],char apellido[],char
         list[index].edad = edad;
         list[index].sexo = sexo;
         list[index].isEmpty = 0;
+        list[index].cantMascotas = 0;
         return 0;
     }
     else
     {
-        return -1;
+        return index;
     }
-    return -1;
 }
+
+void hardCodeInicialCliente(Ecliente listaCliente[],int tam)
+{
+    hardCodeEcliente(listaCliente,tam,"Marcela","pipi","jaja",324567,43,'f');
+    hardCodeEcliente(listaCliente,tam,"Hector","ksdkd","kasj",356454,66,'m');
+    hardCodeEcliente(listaCliente,tam,"Camila","lopez","jtah",804354,27,'f');
+    hardCodeEcliente(listaCliente,tam,"Tomas","sala","idjhas",847404,20,'m');
+    hardCodeEcliente(listaCliente,tam,"Jorge","jfdi","kfiedk",849374,51,'m');
+}
+
 void imprimirListaEcliente(Ecliente lista[],int tam)
 {
     int i;
@@ -77,7 +87,7 @@ void imprimirListaEcliente(Ecliente lista[],int tam)
 
 void imprimirEcliente(Ecliente cliente)
 {
-    printf("%d%10s%11s%11s%10d%6d%6c\n",cliente.id,cliente.nombre,cliente.apellido,cliente.localidad,cliente.tel,cliente.edad,cliente.sexo);
+    printf("%d%10s%11s%11s%10d%6d%6c\t\t%d\n",cliente.id,cliente.nombre,cliente.apellido,cliente.localidad,cliente.tel,cliente.edad,cliente.sexo,cliente.cantMascotas);
 }
 
 int findEclienteById(Ecliente list[], int len,int id)
@@ -106,10 +116,11 @@ int altaCliente(Ecliente listaCliente[],int tamCliente)
         listaCliente[index].tel = getInt("Ingrese telefono:");
         listaCliente[index].edad = getInt("Ingrese edad:");
         do{
-                printf("Ingrese el sexo del cliente f(femenino) m(masculino): ");
-                fflush(stdin);
-                listaCliente[index].sexo = getchar();
-            }while(listaCliente[index].sexo != 'f' && listaCliente[index].sexo != 'm');
+            printf("Ingrese el sexo del cliente f(femenino) m(masculino): ");
+            fflush(stdin);
+            listaCliente[index].sexo = getchar();
+        }while(listaCliente[index].sexo != 'f' && listaCliente[index].sexo != 'm');
+        listaCliente[index].cantMascotas = 0;
         listaCliente[index].isEmpty = 0;
         return 0;
     }
