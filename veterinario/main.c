@@ -5,6 +5,7 @@
 #define MASCOTAS 20
 int main()
 {
+    int opcion;
     Ecliente listaCliente[CLIENTES];
     Emascota listaMascota[MASCOTAS];
     initEcliente(listaCliente,CLIENTES);
@@ -13,36 +14,25 @@ int main()
     hardCodeInicialCliente(listaCliente,CLIENTES);
     hardCodeInicialMascotas(listaMascota,MASCOTAS,listaCliente,CLIENTES);
 
-    //addMascota(listaMascota,MASCOTAS,listaCliente,CLIENTES);
+    do{
+        menuPrincipal();
+        opcion = getInt("\nIngresar una opcion: ");
+        system("cls");
+        switch(opcion)
+        {
+            case 1: menuListar(listaMascota,MASCOTAS,listaCliente,CLIENTES);
+                break;
+            case 2: menuABM(listaMascota,MASCOTAS,listaCliente,CLIENTES);
+                break;
+            case 3: menuOrdenar(listaMascota,MASCOTAS,listaCliente,CLIENTES);
+                break;
+            case 4: menuPromedios(listaMascota,MASCOTAS,listaCliente,CLIENTES);
+                break;
+            case 5: break;
+            default: printf("\nOpcion invalida, intenete nuevamente\n");
+        }
 
-    //bajaMascota(listaMascota,MASCOTAS,listaCliente,CLIENTES);
-
-    imprimirListaEcliente(listaCliente,CLIENTES);
-
-    //printf("\n\n %.2f",promEdadMascotasTipo(listaMascota,MASCOTAS,1));
-
-    //imprimirClientesConMascota(listaCliente,CLIENTES,listaMascota,MASCOTAS);
-
-    //borrarCliente(listaCliente,CLIENTES,listaMascota,MASCOTAS);
-
-    //modificarMascota(listaMascota,MASCOTAS,listaCliente,CLIENTES);
-
-    //imprimirListaEmascotaCD(listaMascota,MASCOTAS,listaCliente,CLIENTES);
-
-    //ordenarPorTipo(listaMascota,MASCOTAS,listaCliente,CLIENTES);
-
-    //modificarCliente(listaCliente,CLIENTES);
-
-    //imprimirListaEcliente(listaCliente,CLIENTES);
-
-    //imprimirClientesVariasMascotas(listaCliente,CLIENTES,listaMascota,MASCOTAS,2);
-
-    //imprimirMascotasSiEsMayorA(listaCliente,CLIENTES,listaMascota,MASCOTAS,3);
-
-    //listarMascotaPorTipo(listaMascota,MASCOTAS,listaCliente,CLIENTES,2);
-
-    //ordenarDuenoPorCantidadesYalfabeto(listaCliente,CLIENTES);
-
+    }while(opcion != 5);
 
     return 0;
 }

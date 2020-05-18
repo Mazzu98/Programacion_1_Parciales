@@ -75,6 +75,7 @@ void hardCodeInicialCliente(Ecliente listaCliente[],int tam)
 void imprimirListaEcliente(Ecliente lista[],int tam)
 {
     int i;
+    printf(" id   nombre\tapellido  localidad  telefono  edad  sexo\n\n");
     for(i=0;i<tam;i++)
     {
         if(lista[i].isEmpty == 0)
@@ -82,12 +83,12 @@ void imprimirListaEcliente(Ecliente lista[],int tam)
             imprimirEcliente(lista[i]);
         }
     }
-    printf("\n\n");
+    printf("\n");
 }
 
 void imprimirEcliente(Ecliente cliente)
 {
-    printf("%d%10s%11s%11s%10d%6d%6c\n",cliente.id,cliente.nombre,cliente.apellido,cliente.localidad,cliente.tel,cliente.edad,cliente.sexo);
+    printf("%2d%10s%11s%11s%10d%6d%6c\n",cliente.id,cliente.nombre,cliente.apellido,cliente.localidad,cliente.tel,cliente.edad,cliente.sexo);
 }
 
 int findEclienteById(Ecliente list[], int len,int id)
@@ -110,6 +111,7 @@ int altaCliente(Ecliente listaCliente[],int tamCliente)
     index = getEmptyPositionEcliente(listaCliente,tamCliente);
     if(index != -1)
     {
+        listaCliente[index].id = newIdEcliente(listaCliente,tamCliente);
         getOLString("Ingrese el nombre del cliente:",listaCliente[index].nombre);
         getOLString("Ingrese el apellido del cliente:",listaCliente[index].apellido);
         getOLString("Ingrese la localidad del cliente:",listaCliente[index].localidad);
@@ -132,12 +134,14 @@ int modificarCliente(Ecliente listaCliente[],int tamCliente)
     int id, index, opcion;
     imprimirListaEcliente(listaCliente,tamCliente);
     id = getInt("Ingrese el id de el cliente a modificar: ");
+    system("cls");
     index = findEclienteById(listaCliente,tamCliente,id);
     if(index != -1)
     {
         do{
         printf("\n1. Modificar nombre\n2. Modificar apellido\n3. Modificar localidad\n4. Modificar telefono\n5. Modificar edad\n6. Modificar sexo\n7. Cancelar\n");
         opcion = getInt("Ingrese una opcion: ");
+        system("cls");
         switch(opcion)
         {
             case 1: getOLString("Ingrese nuevo nombre: ",listaCliente[index].nombre);
@@ -156,12 +160,37 @@ int modificarCliente(Ecliente listaCliente[],int tamCliente)
                         listaCliente[index].sexo = getchar();
                     }while(listaCliente[index].sexo != 'f' && listaCliente[index].sexo != 'm');
                     break;
-            case 7: return -1;
-                break;
+            case 7: printf("Operacion cancelada\n");
+                    return 1;
+                    break;
         }
         }while(opcion < 1 || opcion > 7 );
+        return 0;
     }
     return index;
 }
-int modificarDueno(Ecliente [],int);
+
+void promClientes(Ecliente listaCliente[],int tamCliente)
+{
+    int i,contHombres = 0,contMujeres = 0;
+    float prom;
+
+    for(i=0;i<tamCliente;i++)
+    {
+        if(listaCliente[i].isEmpty == 0)
+        {
+            if(listaCliente[i].sexo == 'm')
+            {
+                contHombres++;
+            }
+            else if(listaCliente[i].sexo == 'f')
+            {
+                contMujeres++;
+            }
+        }
+    }
+    prom = (float)contHombres/contMujeres;
+
+    printf("\nHay %.2f Hombres por cada mujer\n",prom);
+}
 

@@ -27,10 +27,22 @@ void imprimirClientesVariasMascotas(Ecliente [],int,Emascota [],int,int); //11
 
 void imprimirMascotasSiEsMayorA(Ecliente [],int,Emascota [],int,int); // 12
 
-void listarMascotaPorTipo(Emascota [],int,Ecliente[],int,int); //13
+void imprimirMascotaPorTipo(Emascota [],int,Ecliente[],int,int); //13
 
 void ordenarDuenoPorCantidades(Ecliente [],int);
 
 void ordenarDuenoPorCantidadesYalfabeto(Ecliente [],int);
 
 void mensaje(int,char [],char []);
+
+void menuPrincipal();
+
+void menuListar(Emascota [],int,Ecliente [],int );
+
+void menuABM(Emascota [],int,Ecliente [],int );
+
+void menuOrdenar(Emascota [],int,Ecliente [],int );
+
+void menuPromedios(Emascota [],int,Ecliente [],int );
+
+

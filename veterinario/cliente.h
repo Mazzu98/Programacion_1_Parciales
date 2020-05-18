@@ -35,3 +35,5 @@ int altaCliente(Ecliente [],int ); //7
 
 int modificarCliente(Ecliente [],int); //10
 
+void promClientes(Ecliente [],int);
+
