@@ -1,6 +1,6 @@
 #include "clienteConMascota.h"
 
-int hardCodeEmascota(Emascota list[], int len,Ecliente listaCliente[],int tamCliente,char nombre[],int tipo,char raza[],int edad,float peso,char sexo,int idDueno)
+int hardCodeEmascota(Emascota list[], int len,Ecliente listaCliente[],int tamCliente,char nombre[],int tipo,char raza[],int edad,float peso,char sexo,int idDueno,int idRaza)
 {
     int index,indexCliente;
     index = getEmptyPositionEmascota(list,len);
@@ -15,6 +15,7 @@ int hardCodeEmascota(Emascota list[], int len,Ecliente listaCliente[],int tamCli
         list[index].sexo = sexo;
         list[index].idDueno = idDueno;
         list[index].isEmpty = 0;
+        list[index].idRaza = idRaza;
         indexCliente = findEclienteById(listaCliente,tamCliente,list[index].idDueno);
         listaCliente[indexCliente].cantMascotas ++;
         return 0;
@@ -28,17 +29,17 @@ int hardCodeEmascota(Emascota list[], int len,Ecliente listaCliente[],int tamCli
 
 void hardCodeInicialMascotas(Emascota listaMascota[],int tam,Ecliente listaCliente[],int tamCliente)
 {
-    hardCodeEmascota(listaMascota,tam,listaCliente,tamCliente,"miau",1,"ksl",6,9,'f',1);
-    hardCodeEmascota(listaMascota,tam,listaCliente,tamCliente,"gatex",1,"fdg",5,3,'f',1);
-    hardCodeEmascota(listaMascota,tam,listaCliente,tamCliente,"guau",2,"dsfs",9,6,'m',2);
-    hardCodeEmascota(listaMascota,tam,listaCliente,tamCliente,"guau",2,"sdf",2,2,'m',2);
-    hardCodeEmascota(listaMascota,tam,listaCliente,tamCliente,"miau",1,"fgd",3,6,'m',2);
-    hardCodeEmascota(listaMascota,tam,listaCliente,tamCliente,"guau",2,"pitbull",4,2,'m',3);
-    hardCodeEmascota(listaMascota,tam,listaCliente,tamCliente,"zzzz",3,"gfsdgfg",3,0.5,'f',3);
-    hardCodeEmascota(listaMascota,tam,listaCliente,tamCliente,"guau",2,"labrado",6,9,'m',4);
-    hardCodeEmascota(listaMascota,tam,listaCliente,tamCliente,"miau",1,"dsad",6,9,'m',5);
-    hardCodeEmascota(listaMascota,tam,listaCliente,tamCliente,"miau",1,"asdd",6,9,'m',5);
-    hardCodeEmascota(listaMascota,tam,listaCliente,tamCliente,"guau",2,"bulldog",2,9,'m',5);
+    hardCodeEmascota(listaMascota,tam,listaCliente,tamCliente,"miau",1,"persa",6,3,'f',1,3);
+    hardCodeEmascota(listaMascota,tam,listaCliente,tamCliente,"gatex",1,"siames",5,2,'f',1,3);
+    hardCodeEmascota(listaMascota,tam,listaCliente,tamCliente,"sam",2,"caniche",9,3,'m',2,1);
+    hardCodeEmascota(listaMascota,tam,listaCliente,tamCliente,"roco",2,"terrier",2,15,'m',2,1);
+    hardCodeEmascota(listaMascota,tam,listaCliente,tamCliente,"michi",1,"bengala",3,2,'m',2,3);
+    hardCodeEmascota(listaMascota,tam,listaCliente,tamCliente,"bruh",2,"pitbull",4,13,'m',3,1);
+    hardCodeEmascota(listaMascota,tam,listaCliente,tamCliente,"zzzz",3,"gfsdgfg",3,0.5,'f',3,2);
+    hardCodeEmascota(listaMascota,tam,listaCliente,tamCliente,"perrito",2,"labrador",6,11,'m',4,1);
+    hardCodeEmascota(listaMascota,tam,listaCliente,tamCliente,"titi",1,"maine coon",8,13,'m',5,3);
+    hardCodeEmascota(listaMascota,tam,listaCliente,tamCliente,"wkrt",1,"persa",2,3,'m',5,3);
+    hardCodeEmascota(listaMascota,tam,listaCliente,tamCliente,"guau",2,"bulldog",1,9,'m',5,1);
 }
 
 void imprimirClientesConMascota(Ecliente listaCliente[],int tamCliente,Emascota listaMascota[],int tamMascota)
@@ -76,32 +77,39 @@ void imprimirClientesConMascota(Ecliente listaCliente[],int tamCliente,Emascota 
     }
 }
 
-void imprimirListaEmascotaCD(Emascota listaMascota[],int tam,Ecliente listaCliente[],int tamCliente)
+void imprimirListaEmascotaCD(Emascota listaMascota[],int tam,Ecliente listaCliente[],int tamCliente,Eraza listaRaza [] ,int tamRaza)
 {
     int i;
-    printf(" id\tnombre\t      raza   edad   peso    sexo  tipo       duenio\n\n");
+    printf(" id\tnombre\t  edad  peso    sexo      tipo        duenio\t    raza\tpais\n\n");
     for(i=0;i<tam;i++)
     {
         if(listaMascota[i].isEmpty == 0)
         {
-            imprimirMascotaCD(listaMascota[i],listaCliente,tamCliente);
+            imprimirMascotaCD(listaMascota[i],listaCliente,tamCliente,listaRaza,tamRaza);
         }
     }
     printf("\n");
 }
 
-int addMascota(Emascota listaMascota[], int tamMascota,Ecliente listaCliente[], int tamCliente )
+int addMascota(Emascota listaMascota[], int tamMascota,Ecliente listaCliente[], int tamCliente,Eraza listaRaza[] ,int tamRaza )
 {
-        int indexMascota,id,indexCliente;
+        int indexMascota,id,indexCliente,i;
         indexMascota = getEmptyPositionEmascota(listaMascota,tamMascota);
         if(indexMascota != -1 )
         {
             listaMascota[indexMascota].id = newIdEmascota(listaMascota,tamMascota);
             getOLString("Ingresar nombre de la mascota: ",listaMascota[indexMascota].nombre);
-            do{
-                listaMascota[indexMascota].tipo = getInt("Ingrese:\n\t1. Gato \n\t2. Perro\n\t3. Raro");
-            }while(listaMascota[indexMascota].tipo < 1 || listaMascota[indexMascota].tipo > 3);
-            getString("Ingrese la raza de su mascota",listaMascota[indexMascota].raza);
+
+            listaMascota[indexMascota].tipo = getInt("Ingrese:\n\t1. Gato \n\t2. Perro\n\t3. Raro");
+            for(i=0;i<tamRaza;i++)
+            {
+                if(listaRaza[i].isEmpty == 0)
+                {
+                    printf("%d%12s%12s\n",listaRaza[i].id,listaRaza[i].raza,listaRaza[i].pais );
+                }
+            }
+            listaMascota[i].idRaza = getInt("\nIngrese el id de la raza\n");
+
             listaMascota[indexMascota].edad = getInt("Ingrese  la edad de su mascota: ");
             listaMascota[indexMascota].peso = getFloat("Ingrese el peso de su mascota: ");
             do{
@@ -134,11 +142,11 @@ int addMascota(Emascota listaMascota[], int tamMascota,Ecliente listaCliente[], 
         return -1;
     }
 
-int bajaMascota(Emascota listaMascota[],int tamMascota,Ecliente listaCliente[],int tamCliente)
+int bajaMascota(Emascota listaMascota[],int tamMascota,Ecliente listaCliente[],int tamCliente,Eraza listaRaza[] ,int tamRaza)
 {
     int indexMascota,id,indexCliente;
 
-    imprimirListaEmascotaCD(listaMascota,tamMascota,listaCliente,tamCliente);
+    imprimirListaEmascotaCD(listaMascota,tamMascota,listaCliente,tamCliente,listaRaza,tamRaza );
 
     id = getInt("ingrese id de la mascota: ");
     indexMascota = findEmascotaById(listaMascota,tamMascota,id);
@@ -153,19 +161,20 @@ int bajaMascota(Emascota listaMascota[],int tamMascota,Ecliente listaCliente[],i
     return indexMascota;
 }
 
-int modificarMascota(Emascota listaMascota[],int tamMascota,Ecliente listaCliente[], int tamCliente)
+int modificarMascota(Emascota listaMascota[],int tamMascota,Ecliente listaCliente[], int tamCliente,Eraza listaRaza[] ,int tamRaza)
 {
-    int opcion,id,index;
-    imprimirListaEmascotaCD(listaMascota,tamMascota,listaCliente,tamCliente);
+    int opcion,id,index,i;
+    imprimirListaEmascotaCD(listaMascota,tamMascota,listaCliente,tamCliente,listaRaza,tamRaza);
     id = getInt("Ingrese id de la mascota a modificar: ");
     system("cls");
     index = findEmascotaById(listaMascota,tamMascota,id);
     if(index != -1)
     {
         do{
-            printf("\n1. modificar nombre:\n2. modificar tipo:\n3. modificar raza:\n4. modificar edad: \n5. modificar peso:\n6. modificar sexo:\n7. cancelar\n");
-            opcion = getInt("Ingrese una opcion: ");
+
             system("cls");
+            printf("\n1. modificar nombre:\n2. modificar tipo:\n3. modificar raza:\n4. modificar edad: \n5. modificar peso:\n6. modificar sexo:\n7. modificar duenio:\n8. Modificar Raza\n9. cancelar\n");
+            opcion = getInt("Ingrese una opcion: ");
             switch(opcion)
             {
                 case 1: getOLString("Ingrese nuevo nombre",listaMascota[index].nombre);
@@ -186,11 +195,25 @@ int modificarMascota(Emascota listaMascota[],int tamMascota,Ecliente listaClient
                             listaMascota[index].sexo = getchar();
                         }while(listaMascota[index].sexo != 'f' && listaMascota[index].sexo != 'm');
                     break;
-                case 7: printf("Operacion cancelada\n");
+                case 7:
+                        imprimirListaEcliente(listaCliente,tamCliente);
+                        listaMascota[index].idDueno = getInt("Ingrese id del nuevo Duenio:");
+                case 8: for(i=0;i<tamRaza;i++)
+                        {
+                            if(listaRaza[i].isEmpty == 0)
+                            {
+
+                                printf("%d%12s%12s\n",listaRaza[i].id,listaRaza[i].raza,listaRaza[i].pais );
+                            }
+                        }
+                        listaMascota[index].idRaza = getInt("Ingrese nuevo id de raza:");
+                        break;
+
+                case 9: printf("Operacion cancelada\n");
                     return 1;
                     break;
             }
-        }while(opcion <1 || opcion > 7);
+        }while(opcion <1 || opcion > 9);
         return 0;
     }
     return index;
@@ -219,10 +242,10 @@ int borrarCliente(Ecliente listaCliente[],int tamCliente,Emascota listaMascota[]
     return indexCliente;
 }
 
-void imprimirMascotaCD(Emascota mascota,Ecliente listaCliente[],int tamCliente)
+void imprimirMascotaCD(Emascota mascota,Ecliente listaCliente[],int tamCliente,Eraza listaRaza [] ,int tamRaza)
 {
-    int indexCliente;
-    printf("%2d%12s%12s%6d%8.2f%6c\t",mascota.id,mascota.nombre,mascota.raza,mascota.edad,mascota.peso,mascota.sexo);
+    int indexCliente,i;
+    printf("%2d%12s%6d%8.2f%6c\t",mascota.id,mascota.nombre,mascota.edad,mascota.peso,mascota.sexo);
             indexCliente = findEclienteById(listaCliente,tamCliente,mascota.idDueno);
             switch(mascota.tipo)
             {
@@ -233,10 +256,19 @@ void imprimirMascotaCD(Emascota mascota,Ecliente listaCliente[],int tamCliente)
                 case 3: printf("  raro ");
                     break;
             }
-            printf("%13s\n",listaCliente[indexCliente].nombre);
+            printf("%13s",listaCliente[indexCliente].nombre);
+            for(i=0;i<tamRaza;i++)
+            {
+                if(mascota.idRaza == listaRaza[i].id)
+                {
+                    printf("%12s%12s\n",listaRaza[i].raza,listaRaza[i].pais);
+                }
+            }
+            printf("\n");
+
 }
 
-void ordenarPorTipo(Emascota listaMascota[],int tamMascota,Ecliente listaCliente[],int tamCliente)
+void ordenarPorTipo(Emascota listaMascota[],int tamMascota,Ecliente listaCliente[],int tamCliente,Eraza listaRaza[] ,int tamRaza)
 {
     int i,j;
     Emascota aux;
@@ -253,7 +285,7 @@ void ordenarPorTipo(Emascota listaMascota[],int tamMascota,Ecliente listaCliente
             }
         }
     }
-    imprimirListaEmascotaCD(listaMascota,tamMascota,listaCliente,tamCliente);
+    imprimirListaEmascotaCD(listaMascota,tamMascota,listaCliente,tamCliente,listaRaza,tamRaza);
 }
 
 void imprimirClientesVariasMascotas(Ecliente listaCliente[],int tamCliente,Emascota listaMascota[],int tamMascota,int masDe)
@@ -282,32 +314,32 @@ void imprimirClientesVariasMascotas(Ecliente listaCliente[],int tamCliente,Emasc
     }
 }
 
-void imprimirMascotasSiEsMayorA(Ecliente listaCliente[],int tamCliente,Emascota listaMascota[],int tamMascota,int mayorDe)
+void imprimirMascotasSiEsMayorA(Ecliente listaCliente[],int tamCliente,Emascota listaMascota[],int tamMascota,Eraza listaRaza[] ,int tamRaza,int mayorDe)
 {
     int i;
 
-    printf(" id\tnombre\t      raza   edad   peso    sexo  tipo       duenio\n\n");
+    printf(" id\tnombre\t      raza   edad   peso    sexo  tipo        duenio\n\n");
 
     for(i=0;i<tamMascota;i++)
     {
         if(listaMascota[i].isEmpty == 0 && listaMascota[i].edad > mayorDe)
         {
-            imprimirMascotaCD(listaMascota[i],listaCliente,tamCliente);
+            imprimirMascotaCD(listaMascota[i],listaCliente,tamCliente,listaRaza,tamRaza);
         }
     }
 }
 
-void imprimirMascotaPorTipo(Emascota listaMascota[],int tamMascota,Ecliente listaCliente[],int tamCliente,int tipo)
+void imprimirMascotaPorTipo(Emascota listaMascota[],int tamMascota,Ecliente listaCliente[],int tamCliente,int tipo,Eraza listaRaza[] ,int tamRaza)
 {
     int i;
 
-    printf(" id\tnombre\t      raza   edad   peso    sexo  tipo       duenio\n\n");
+    printf(" id\tnombre\t      raza   edad   peso    sexo  tipo        duenio\n\n");
 
     for(i=0;i<tamMascota;i++)
     {
         if(listaMascota[i].isEmpty == 0 && listaMascota[i].tipo == tipo)
         {
-            imprimirMascotaCD(listaMascota[i],listaCliente,tamCliente);
+            imprimirMascotaCD(listaMascota[i],listaCliente,tamCliente,listaRaza,tamRaza);
         }
     }
 }
@@ -375,7 +407,7 @@ void menuPrincipal()
     printf("\n1. Listar\n2. ABM\n3. Ordenar\n4. promedios\n5. Salir\n");
 }
 
-void menuListar(Emascota listaMascota[],int tamMascota,Ecliente listaCliente[],int tamCliente)
+void menuListar(Emascota listaMascota[],int tamMascota,Ecliente listaCliente[],int tamCliente,Eraza listaRaza[] ,int tamRaza)
 {
     int opcion,tipo;
     do{
@@ -385,27 +417,28 @@ void menuListar(Emascota listaMascota[],int tamMascota,Ecliente listaCliente[],i
         printf("4. Listado de clientes con mas de una mascota\n");
         printf("5. Listado de mascotas de mas de 3 anios, con duenios\n");
         printf("6. Listar las mascotas por un tipo en particular\n");
-        printf("7. Volver\n\n");
+        printf("7. Listar los clientes con mascotas del mismo sexo\n");
+        printf("8. Volver\n\n");
         opcion = getInt("Ingrese una opcion: ");
         system("cls");
         switch(opcion)
         {
         case 1: imprimirListaEcliente(listaCliente,tamCliente);
                 break;
-        case 2: imprimirListaEmascotaCD(listaMascota,tamMascota,listaCliente,tamCliente);
+        case 2: imprimirListaEmascotaCD(listaMascota,tamMascota,listaCliente,tamCliente,listaRaza,tamRaza);
                 break;
         case 3: imprimirClientesConMascota(listaCliente,tamCliente,listaMascota,tamMascota);
                 break;
         case 4: imprimirClientesVariasMascotas(listaCliente,tamCliente,listaMascota,tamMascota,1);
                 break;
-        case 5: imprimirMascotasSiEsMayorA(listaCliente,tamCliente,listaMascota,tamMascota,3);
+        case 5: imprimirMascotasSiEsMayorA(listaCliente,tamCliente,listaMascota,tamMascota,3,listaRaza,tamMascota);
                 break;
         case 6:
                     tipo = getInt("Ingrese:\n\t1. Gato \n\t2. Perro\n\t3. Raro");
                     system("cls");
                     if(tipo==1 || tipo == 2 || tipo == 3)
                     {
-                        imprimirMascotaPorTipo(listaMascota,tamMascota,listaCliente,tamCliente,tipo);
+                        imprimirMascotaPorTipo(listaMascota,tamMascota,listaCliente,tamCliente,tipo,listaRaza,tamRaza);
                     }
                     else
                     {
@@ -413,13 +446,15 @@ void menuListar(Emascota listaMascota[],int tamMascota,Ecliente listaCliente[],i
                     }
 
                 break;
-        case 7: break;
+        case 7: listarDueniosDeMascotasDelMismoSexo(listaCliente,tamCliente,listaMascota,tamMascota);
+            break;
+        case 8: break;
         default: printf("\nOpcion invalida, intente de nuevo\n\n");
         }
-    }while(opcion < 1 || opcion > 7);
+    }while(opcion < 1 || opcion > 8);
 }
 
-void menuABM(Emascota listaMascota[],int tamMascota,Ecliente listaCliente[],int tamCliente)
+void menuABM(Emascota listaMascota[],int tamMascota,Ecliente listaCliente[],int tamCliente,Eraza listaRaza[],int tamRaza)
 {
     int opcion,succes;
     do{
@@ -434,15 +469,15 @@ void menuABM(Emascota listaMascota[],int tamMascota,Ecliente listaCliente[],int 
         system("cls");
         switch(opcion)
         {
-        case 1: succes = addMascota(listaMascota,tamMascota,listaCliente,tamCliente);
+        case 1: succes = addMascota(listaMascota,tamMascota,listaCliente,tamCliente,listaRaza,tamRaza);
                 system("cls");
                 mensaje(succes,"Operacion realizada","Error, operacion no realizada por falta de espacio");
                 break;
-        case 2: succes = modificarMascota(listaMascota,tamMascota,listaCliente,tamCliente);
+        case 2: succes = modificarMascota(listaMascota,tamMascota,listaCliente,tamCliente,listaRaza,tamRaza);
                 system("cls");
                 mensaje(succes,"Operacion realizada","Error, operacion no realizada por id invalido");
                 break;
-        case 3: succes = bajaMascota(listaMascota,tamMascota,listaCliente,tamCliente);
+        case 3: succes = bajaMascota(listaMascota,tamMascota,listaCliente,tamCliente,listaRaza,tamRaza);
                 system("cls");
                 mensaje(succes,"Operacion realizada","Error, operacion no realizada");
                 break;
@@ -464,7 +499,7 @@ void menuABM(Emascota listaMascota[],int tamMascota,Ecliente listaCliente[],int 
     }while(opcion < 1 || opcion > 7);
 }
 
-void menuOrdenar(Emascota listaMascota[],int tamMascota,Ecliente listaCliente[],int tamCliente)
+void menuOrdenar(Emascota listaMascota[],int tamMascota,Ecliente listaCliente[],int tamCliente,Eraza listaRaza[] ,int tamRaza)
 {
     int opcion;
     do{
@@ -476,7 +511,7 @@ void menuOrdenar(Emascota listaMascota[],int tamMascota,Ecliente listaCliente[],
         system("cls");
         switch(opcion)
         {
-        case 1: ordenarPorTipo(listaMascota,tamMascota,listaCliente,tamCliente);
+        case 1: ordenarPorTipo(listaMascota,tamMascota,listaCliente,tamCliente,listaRaza,tamRaza);
                 break;
         case 2: ordenarDuenoPorCantidades(listaCliente,tamCliente);
                 break;
@@ -512,5 +547,36 @@ void menuPromedios(Emascota listaMascota[],int tamMascota,Ecliente listaCliente[
         default: printf("\nOpcion invalida, intente de nuevo\n\n");
         }
     }while(opcion < 1 || opcion > 4);
+}
+
+void listarDueniosDeMascotasDelMismoSexo(Ecliente listaCliente[],int tamCliente,Emascota listaMascota[],int tamMascota)
+{
+    int i,j,contf ,contm ;
+    for(i=0;i<tamCliente;i++)
+    {
+        contf = 0;
+        contm = 0;
+        if(listaCliente[i].isEmpty  == 0)
+        {
+            for(j=0;j<tamMascota;j++)
+            {
+                if(listaMascota[j].isEmpty == 0 && listaMascota[j].idDueno == listaCliente[i].id)
+                {
+                    if(listaMascota[j].sexo == 'f')
+                     {
+                          contf++;
+                     }
+                     else if(listaMascota[j].sexo == 'm')
+                     {
+                          contm++;
+                     }
+                }
+            }
+            if(contf > 1 || contm > 1 )
+            {
+                imprimirEcliente(listaCliente[i]);
+            }
+        }
+    }
 }
 

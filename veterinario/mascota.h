@@ -9,6 +9,7 @@ typedef struct
     char nombre[TAM];
     int tipo;
     char raza[TAM];
+    int idRaza;
     int edad;
     float peso;
     char sexo;

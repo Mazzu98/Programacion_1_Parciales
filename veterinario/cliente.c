@@ -172,25 +172,22 @@ int modificarCliente(Ecliente listaCliente[],int tamCliente)
 
 void promClientes(Ecliente listaCliente[],int tamCliente)
 {
-    int i,contHombres = 0,contMujeres = 0;
-    float prom;
+    int i,cont = 0,contMujeres = 0;
+    float porcent;
 
     for(i=0;i<tamCliente;i++)
     {
         if(listaCliente[i].isEmpty == 0)
         {
-            if(listaCliente[i].sexo == 'm')
-            {
-                contHombres++;
-            }
-            else if(listaCliente[i].sexo == 'f')
+            if(listaCliente[i].sexo == 'f')
             {
                 contMujeres++;
             }
+            cont++;
         }
     }
-    prom = (float)contHombres/contMujeres;
+    porcent = (float)contMujeres/cont*100;
 
-    printf("\nHay %.2f Hombres por cada mujer\n",prom);
+    printf("\nEl porcentaje de mujeres es de %.2f %%\n",porcent);
 }
 
