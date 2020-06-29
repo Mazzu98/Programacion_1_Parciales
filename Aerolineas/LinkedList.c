@@ -458,12 +458,11 @@ int ll_containsAll(LinkedList* this, LinkedList* this2)
     int ret = -1;
     int len2;
     int retContains;
-    int cont = 0;
     int i;
 
     if(this != NULL && this2 != NULL)
     {
-        ret = 0;
+        ret = 1;
         len2 = ll_len(this2);
 
         for(i=0; i<len2; i++)
@@ -471,15 +470,11 @@ int ll_containsAll(LinkedList* this, LinkedList* this2)
             pElement = ll_get(this2, i);
             retContains = ll_contains(this, pElement);
 
-            if(retContains == 1)
+            if(retContains == 0)
             {
-                cont++;
+                ret = 0;
+                break;
             }
-        }
-
-        if(cont == len2)
-        {
-            ret = 1;
         }
     }
 

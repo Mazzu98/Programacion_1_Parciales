@@ -16,25 +16,31 @@ Vuelo* newVueloParametrized(char* idVuelo,char* idAvion,char* idPiloto,Fecha fec
     nueva = newVuelo();
     if (nueva!= NULL)
     {
-        nueva->idVuelo = atoi(idVuelo);
-        nueva->idAvion = atoi(idAvion);
-        nueva->idPiloto = atoi(idPiloto);
-        nueva->fecha = fecha;
-        strcpy(nueva->destino,destino);
-        nueva->cantPasajeros = atoi(cantPasajeros);
-        nueva->horaDespegue = atoi(horaDespegue);
-        nueva->horaLlegada = atoi(horaLlegada);
+        setIdVuelo(nueva,atoi(idVuelo));
+        setIdAvion(nueva,atoi(idAvion));
+        setIdPiloto(nueva,atoi(idPiloto));
+        setFechaV(nueva,fecha);
+        setDestino(nueva,destino);
+        setCantPasajeros(nueva,atoi(cantPasajeros));
+        setHoraLlegada(nueva,atoi(horaLlegada));
+        setHoraDespegue(nueva,atoi(horaDespegue));
     }
     return nueva;
 }
 
 void imprimirVuelo(Vuelo* vuelo)
 {
+    Vuelo aux;
     if(vuelo != NULL)
     {
+        aux = *vuelo;
+        printf("%4d%9d%9d%9d/%d/%d%15s%11d%13d%10d\n",aux.idVuelo,aux.idAvion,aux.idPiloto
+               ,aux.fecha.dia,aux.fecha.mes,aux.fecha.anio,aux.destino
+               ,aux.cantPasajeros,aux.horaDespegue,aux.horaLlegada);
+        /*
         printf("%4d%9d%9d%9d/%d/%d%15s%11d%13d%10d\n",vuelo->idVuelo,vuelo->idAvion,vuelo->idPiloto
                ,vuelo->fecha.dia,vuelo->fecha.mes,vuelo->fecha.anio,vuelo->destino
-               ,vuelo->cantPasajeros,vuelo->horaDespegue,vuelo->horaLlegada);
+               ,vuelo->cantPasajeros,vuelo->horaDespegue,vuelo->horaLlegada);*/
     }
 }
 

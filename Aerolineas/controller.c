@@ -29,7 +29,38 @@ int controller_pilotosFromText(char* path, LinkedList* lista)
     return ret;
 }
 
-int controller_findById(LinkedList* lista,int id)
+int controller_listToText(LinkedList* lista,FILE* pFile)
+{
+    int len;
+    int ret = 1;
+    Vuelo* vuelo;
+    Vuelo vueloAux;
+    int i;
+    char fecha[11];
+
+    if(lista!= NULL)
+    {
+        if(pFile != NULL)
+        {
+            len = ll_len(lista);
+            fprintf(pFile,"idVuelo,idAvion,idPiloto,Fecha,Destino,CantPasajeros,Despegue,Llegada\n");
+            for(i=0;i<len;i++)
+            {
+                vuelo = ll_get(lista,i);
+                vueloAux = *vuelo;
+                fechaToString(vueloAux.fecha,fecha);
+                fprintf(pFile,"%d,%d,%d,%s,%s,%d,%d,%d\n",vueloAux.idVuelo,vueloAux.idAvion,vueloAux.idPiloto,fecha,
+                            vueloAux.destino,vueloAux.cantPasajeros,vueloAux.horaDespegue,vueloAux.horaLlegada);
+
+            }
+            ret = 0;
+        }
+
+    }
+    return ret;
+}
+
+int controller_findPilotoById(LinkedList* lista,int id)
 {
     int idCompare;
     int i;
@@ -83,7 +114,7 @@ void imprimirVueloConPiloto(LinkedList* listaPilotos,Vuelo* vuelo)
                ,vuelo->cantPasajeros,vuelo->horaDespegue,vuelo->horaLlegada);
 
         getIdPiloto(vuelo,&idPiloto);
-        index = controller_findById(listaPilotos,idPiloto);
+        index = controller_findPilotoById(listaPilotos,idPiloto);
         if(index != -1)
         {
             piloto = ll_get(listaPilotos,index);
@@ -119,22 +150,28 @@ void imprimirListaVuelosConPiloto(LinkedList* listaVuelos,LinkedList* listaPilot
 int cantPasajeros(void* vuelo)
 {
     int ret;
-    vuelo = (Vuelo*) vuelo;
-    getCantPasajeros(vuelo,&ret);
+
+    if (vuelo != NULL)
+    {
+        vuelo = (Vuelo*) vuelo;
+        getCantPasajeros(vuelo,&ret);
+    }
     return ret;
 }
 int cantPasajerosIrlanda(void* vuelo)
 {
     int ret = 0;
     char destino[21];
-    vuelo = (Vuelo*) vuelo;
-
-    getDestino(vuelo,destino);
-    if(strcmp(destino,"Irlanda")==0)
+    if (vuelo != NULL)
     {
-        getCantPasajeros(vuelo,&ret);
-    }
+        vuelo = (Vuelo*) vuelo;
 
+        getDestino(vuelo,destino);
+        if(strcmp(destino,"Irlanda")==0)
+        {
+            getCantPasajeros(vuelo,&ret);
+        }
+    }
     return ret;
 }
 
@@ -145,14 +182,19 @@ int vuelosCortos(void* vuelo)
     int horaLlegada;
     int horaDespegue;
 
-    getHoraLlegada(vuelo,&horaLlegada);
-    getHoraDespegue(vuelo,&horaDespegue);
-
-    duracion = horaLlegada - horaDespegue;
-    if(duracion < 3)
+    if (vuelo != NULL)
     {
-        ret = 1;
+        vuelo = (Vuelo*)vuelo;
+        getHoraLlegada(vuelo,&horaLlegada);
+        getHoraDespegue(vuelo,&horaDespegue);
+
+        duracion = horaLlegada - horaDespegue;
+        if(duracion < 3)
+        {
+            ret = 1;
+        }
     }
+
     return ret;
 }
 
@@ -160,13 +202,8 @@ int vuelosCortos(void* vuelo)
 int vuelosCortosCsv(char* path,LinkedList* listaVuelos)
 {
     FILE* pFile;
-    int len;
-    int i;
     int ret = 1;
-    char fecha[11];
     LinkedList* nuevaLista;
-    Vuelo* vuelo;
-    Vuelo vueloAux;
 
     if(listaVuelos != NULL)
     {
@@ -174,19 +211,8 @@ int vuelosCortosCsv(char* path,LinkedList* listaVuelos)
         pFile = fopen(path,"w");
         if(pFile != NULL)
         {
-            len = ll_len(nuevaLista);
-            fprintf(pFile,"idVuelo,idAvion,idPiloto,Fecha,Destino,CantPasajeros,Despegue,Llegada\n");
-            for(i=0;i<len;i++)
-            {
-                vuelo = ll_get(nuevaLista,i);
-                vueloAux = *vuelo;
-                fechaToString(vueloAux.fecha,fecha);
-                fprintf(pFile,"%d,%d,%d,%s,%s,%d,%d,%d\n",vueloAux.idVuelo,vueloAux.idAvion,vueloAux.idPiloto,fecha,
-                            vueloAux.destino,vueloAux.cantPasajeros,vueloAux.horaDespegue,vueloAux.horaLlegada);
-
-            }
+            ret = controller_listToText(nuevaLista,pFile);
             fclose(pFile);
-            ret = 0;
         }
         ll_deleteLinkedList(nuevaLista);
     }
@@ -198,12 +224,15 @@ int vuelosPortugal(void* vuelo)
     int ret = 0;
     char destino[31];
 
-    vuelo = (Vuelo*) vuelo;
-
-    getDestino(vuelo,destino);
-    if(strcmp(destino,"Portugal")==0)
+    if (vuelo != NULL)
     {
-        ret = 1;
+        vuelo = (Vuelo*) vuelo;
+
+        getDestino(vuelo,destino);
+        if(strcmp(destino,"Portugal")==0)
+        {
+            ret = 1;
+        }
     }
     return ret;
 }
@@ -213,12 +242,15 @@ int sinAlexLifeson(void* vuelo)
     int ret = 0;
     int id;
 
-    vuelo = (Vuelo*) vuelo;
-
-    getIdPiloto(vuelo,&id);
-    if(id != 1)
+    if (vuelo != NULL)
     {
-        ret = 1;
+        vuelo = (Vuelo*) vuelo;
+
+        getIdPiloto(vuelo,&id);
+        if(id != 1)
+        {
+            ret = 1;
+        }
     }
     return ret;
 }

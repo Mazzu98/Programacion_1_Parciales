@@ -15,8 +15,8 @@ Piloto* newPilotoParametrized(char* id,char* nombre)
     nuevo = newPiloto();
     if(nuevo != NULL)
     {
-        nuevo->id = atoi(id);
-        strcpy(nuevo->nombre,nombre);
+        setIdP(nuevo,atoi(id));
+        setNombreP(nuevo,nombre);
     }
     return nuevo;
 }

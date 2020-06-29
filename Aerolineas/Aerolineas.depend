@@ -82,7 +82,7 @@
 	<stdlib.h>
 	<string.h>
 
-1593395188 source:c:\users\juan\documents\c projects\proyectos git\aerolineas\linkedlist.c
+1593444020 source:c:\users\juan\documents\c projects\proyectos git\aerolineas\linkedlist.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -104,18 +104,18 @@
 
 1593385688 c:\users\juan\documents\c projects\proyectos git\aerolineas\piloto.h
 
-1593385655 source:c:\users\juan\documents\c projects\proyectos git\aerolineas\piloto.c
+1593470622 source:c:\users\juan\documents\c projects\proyectos git\aerolineas\piloto.c
 	"piloto.h"
 	<stdlib.h>
 	<string.h>
 
-1593384902 source:c:\users\juan\documents\c projects\proyectos git\aerolineas\vuelo.c
+1593470379 source:c:\users\juan\documents\c projects\proyectos git\aerolineas\vuelo.c
 	"vuelo.h"
 	<stdlib.h>
 	<string.h>
 	<stdio.h>
 
-1593437020 source:c:\users\juan\documents\c projects\proyectos git\aerolineas\controller.c
+1593471846 source:c:\users\juan\documents\c projects\proyectos git\aerolineas\controller.c
 	"LinkedList.h"
 	"vuelo.h"
 	"parcer.h"
@@ -130,7 +130,7 @@
 	"fecha.h"
 	<stdlib.h>
 
-1593435864 source:c:\users\juan\documents\c projects\proyectos git\aerolineas\main.c
+1593471957 source:c:\users\juan\documents\c projects\proyectos git\aerolineas\main.c
 	<stdio.h>
 	<stdlib.h>
 	"vuelo.h"
@@ -140,5 +140,5 @@
 	"entradaValidada.h"
 	"parcer.h"
 
-1593436901 c:\users\juan\documents\c projects\proyectos git\aerolineas\controller.h
+1593471679 c:\users\juan\documents\c projects\proyectos git\aerolineas\controller.h
 

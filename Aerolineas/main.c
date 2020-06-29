@@ -18,6 +18,8 @@ int main()
 
     controller_pilotosFromText("pilotos.csv",listaPiloto);
 
+
+
     do
     {
         imprimirMenu();
@@ -41,15 +43,15 @@ int main()
                     break;
             case 5: ret = vuelosCortosCsv("vuelosCortos.csv",listaVuelos);
                     system("cls");
-                    succes(ret,"Generado correctamente\n","No se pudo generar\n");
+                    succes(ret,"vuelosCortos.csv generado correctamente\n","No se pudo generar\n");
                     break;
             case 6: listaFiltrada = ll_filter(listaVuelos,vuelosPortugal);
                     system("cls");
-                    succesP(listaFiltrada,"Generada correctamente\n","No se pudo generar\n");
+                    succesP(listaFiltrada,"lista a portugal generada correctamente\n","No se pudo generar\n");
                     break;
             case 7: listaFiltrada = ll_filter(listaVuelos,sinAlexLifeson);
                     system("cls");
-                    succesP(listaFiltrada,"Generada correctamente\n","No se pudo generar\n");
+                    succesP(listaFiltrada,"lista sin Alex Lifeson generada correctamente\n","No se pudo generar\n");
                     break;
             case 8:
                     break;
