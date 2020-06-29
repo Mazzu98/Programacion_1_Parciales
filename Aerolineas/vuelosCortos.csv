@@ -1,3 +1,4 @@
+idVuelo,idAvion,idPiloto,Fecha,Destino,CantPasajeros,Despegue,Llegada
 2,1,5,28/11/2019,Honduras,80,17,19
 86,4,5,26/11/2019,Francia,58,17,18
 65,1,4,26/11/2019,Portugal,54,17,18

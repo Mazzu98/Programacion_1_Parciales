@@ -5,6 +5,7 @@
 #include "piloto.h"
 #include "controller.h"
 #include "entradaValidada.h"
+#include "parcer.h"
 
 int main()
 {

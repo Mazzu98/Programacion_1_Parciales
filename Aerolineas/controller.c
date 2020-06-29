@@ -138,6 +138,25 @@ int cantPasajerosIrlanda(void* vuelo)
     return ret;
 }
 
+int vuelosCortos(void* vuelo)
+{
+    int ret = 0;
+    int duracion;
+    int horaLlegada;
+    int horaDespegue;
+
+    getHoraLlegada(vuelo,&horaLlegada);
+    getHoraDespegue(vuelo,&horaDespegue);
+
+    duracion = horaLlegada - horaDespegue;
+    if(duracion < 3)
+    {
+        ret = 1;
+    }
+    return ret;
+}
+
+
 int vuelosCortosCsv(char* path,LinkedList* listaVuelos)
 {
     FILE* pFile;
@@ -145,30 +164,31 @@ int vuelosCortosCsv(char* path,LinkedList* listaVuelos)
     int i;
     int ret = 1;
     char fecha[11];
-    Vuelo vueloAux;
-    int duracion;
+    LinkedList* nuevaLista;
     Vuelo* vuelo;
+    Vuelo vueloAux;
+
     if(listaVuelos != NULL)
     {
+        nuevaLista = ll_filter(listaVuelos,vuelosCortos);
         pFile = fopen(path,"w");
         if(pFile != NULL)
         {
-            len = ll_len(listaVuelos);
+            len = ll_len(nuevaLista);
+            fprintf(pFile,"idVuelo,idAvion,idPiloto,Fecha,Destino,CantPasajeros,Despegue,Llegada\n");
             for(i=0;i<len;i++)
             {
-                vuelo = ll_get(listaVuelos,i);
+                vuelo = ll_get(nuevaLista,i);
                 vueloAux = *vuelo;
-                duracion = vueloAux.horaLlegada - vueloAux.horaDespegue;
-                if(duracion < 3)
-                {
-                    fechaToString(vueloAux.fecha,fecha);
-                    fprintf(pFile,"%d,%d,%d,%s,%s,%d,%d,%d\n",vueloAux.idVuelo,vueloAux.idAvion,vueloAux.idPiloto,fecha,
+                fechaToString(vueloAux.fecha,fecha);
+                fprintf(pFile,"%d,%d,%d,%s,%s,%d,%d,%d\n",vueloAux.idVuelo,vueloAux.idAvion,vueloAux.idPiloto,fecha,
                             vueloAux.destino,vueloAux.cantPasajeros,vueloAux.horaDespegue,vueloAux.horaLlegada);
-                }
+
             }
             fclose(pFile);
             ret = 0;
         }
+        ll_deleteLinkedList(nuevaLista);
     }
     return ret;
 }

@@ -60,3 +60,4 @@ void fechaToString(Fecha fecha,char* cadena)
 }
 
 
+
