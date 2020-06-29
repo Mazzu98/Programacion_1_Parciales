@@ -1,0 +1,76 @@
+# depslib dependency file v1.0
+1589239160 source:z:\software\code blocks\c projects\aerolineas\entradavalidada.c
+	"entradaValidada.h"
+
+1589239148 z:\software\code blocks\c projects\aerolineas\entradavalidada.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1593395188 source:z:\software\code blocks\c projects\aerolineas\linkedlist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+
+1593395193 z:\software\code blocks\c projects\aerolineas\linkedlist.h
+
+1593431618 source:z:\software\code blocks\c projects\aerolineas\main.c
+	<stdio.h>
+	<stdlib.h>
+	"vuelo.h"
+	"LinkedList.h"
+	"piloto.h"
+	"controller.h"
+	"entradaValidada.h"
+
+1593431202 source:z:\software\code blocks\c projects\aerolineas\fecha.c
+	"fecha.h"
+	<stdlib.h>
+
+1593431202 z:\software\code blocks\c projects\aerolineas\fecha.h
+
+1593375859 source:z:\software\code blocks\c projects\aerolineas\aerolinea.c
+	"aerolinea.h"
+	<stdlib.h>
+	<string.h>
+
+1593375860 z:\software\code blocks\c projects\aerolineas\aerolinea.h
+	"fecha.h"
+
+1593385655 source:z:\software\code blocks\c projects\aerolineas\piloto.c
+	"piloto.h"
+	<stdlib.h>
+	<string.h>
+
+1593385688 z:\software\code blocks\c projects\aerolineas\piloto.h
+
+1593384902 source:z:\software\code blocks\c projects\aerolineas\vuelo.c
+	"vuelo.h"
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+
+1593384115 z:\software\code blocks\c projects\aerolineas\vuelo.h
+	"fecha.h"
+
+1593398345 source:z:\software\code blocks\c projects\aerolineas\parcer.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"vuelo.h"
+	"piloto.h"
+
+1593431544 source:z:\software\code blocks\c projects\aerolineas\controller.c
+	"LinkedList.h"
+	"vuelo.h"
+	"parcer.h"
+	"piloto.h"
+	<string.h>
+
+1593431541 z:\software\code blocks\c projects\aerolineas\controller.h
+
+1593386304 z:\software\code blocks\c projects\aerolineas\parcer.h
+	<stdlib.h>
+	<stdio.h>
+
