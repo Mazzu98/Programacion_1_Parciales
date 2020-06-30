@@ -62,4 +62,5 @@ LinkedList* ll_clone(LinkedList* this);
 int ll_count(LinkedList* this, int(*fn)(void* element));
 LinkedList* ll_filter(LinkedList* this, int(*fn)(void* element));
 
+LinkedList* ll_filterParametro(LinkedList* ,char* , int(*fn)(void* element,char* cadena));
 

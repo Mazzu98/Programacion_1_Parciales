@@ -16,6 +16,10 @@ Vuelo* newVueloParametrized(char* ,char* ,char* ,Fecha , char* ,char* ,char* ,ch
 
 void imprimirVuelo(Vuelo* );
 
+int vuelo_vuelosPortugal(void* );
+int vuelo_sinAlexLifeson(void* );
+int vuelo_vuelosCortos(void* );
+
 int getIdVuelo(Vuelo*,int*);
 int getIdAvion(Vuelo*,int*);
 int getIdPiloto(Vuelo*,int*);

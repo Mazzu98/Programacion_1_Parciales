@@ -1,11 +1,12 @@
 
 #include "LinkedList.h"
+#include "entradaValidada.h"
 #include "vuelo.h"
 #include "parcer.h"
 #include "piloto.h"
 #include <string.h>
 
-int controller_vuelosFromText(char* path, LinkedList* lista)
+int controller_mazzucchelli_vuelosFromText(char* path, LinkedList* lista)
 {
     FILE* archivo;
     int ret;
@@ -17,7 +18,7 @@ int controller_vuelosFromText(char* path, LinkedList* lista)
     return ret;
 }
 
-int controller_pilotosFromText(char* path, LinkedList* lista)
+int controller_mazzucchelli_pilotosFromText(char* path, LinkedList* lista)
 {
     FILE* archivo;
     int ret;
@@ -29,7 +30,7 @@ int controller_pilotosFromText(char* path, LinkedList* lista)
     return ret;
 }
 
-int controller_listToText(LinkedList* lista,FILE* pFile)
+int controller_mazzucchelli_listToText(LinkedList* lista,FILE* pFile)
 {
     int len;
     int ret = 1;
@@ -60,7 +61,39 @@ int controller_listToText(LinkedList* lista,FILE* pFile)
     return ret;
 }
 
-int controller_findPilotoById(LinkedList* lista,int id)
+int controller_mazzucchelli_listPilotoToText(LinkedList* lista,char* path)
+{
+    FILE* pFile;
+    Piloto* piloto;
+    Piloto aux;
+    int ret = -1;
+    int len;
+    int i;
+
+    if(lista != NULL)
+    {
+        ret = 1;
+        pFile = fopen(path,"w");
+        if(pFile != NULL)
+        {
+
+            len = ll_len(lista);
+            fprintf(pFile,"id,Nombre\n");
+            for(i=0;i<len;i++)
+            {
+                piloto = ll_get(lista,i);
+                aux = *piloto;
+                fprintf(pFile,"%d,%s\n",aux.id,aux.nombre);
+            }
+            fclose(pFile);
+            ret = 0;
+        }
+    }
+    return ret;
+}
+
+
+int controller_mazzucchelli_findPilotoById(LinkedList* lista,int id)
 {
     int idCompare;
     int i;
@@ -83,7 +116,7 @@ int controller_findPilotoById(LinkedList* lista,int id)
     return ret;
 }
 
-void imprimirListaVuelos(LinkedList* lista)
+void controller_mazzucchelli_imprimirListaVuelos(LinkedList* lista)
 {
     int len;
     Vuelo* vuelo;
@@ -101,20 +134,42 @@ void imprimirListaVuelos(LinkedList* lista)
     }
 }
 
-void imprimirVueloConPiloto(LinkedList* listaPilotos,Vuelo* vuelo)
+void controller_mazzucchelli_imprimirListaPilotos(LinkedList* lista)
+{
+    Piloto* piloto;
+    Piloto auxPiloto;
+    int len;
+    int i;
+    if(lista != NULL)
+    {
+        len = ll_len(lista);
+        printf(" id        Nombre\n\n");
+        for(i=0;i<len;i++)
+        {
+            piloto = ll_get(lista,i);
+            auxPiloto = *piloto;
+            printf("%2d%18s\n",auxPiloto.id,auxPiloto.nombre);
+        }
+        printf("\n");
+    }
+}
+
+void controller_mazzucchelli_imprimirVueloConPiloto(LinkedList* listaPilotos,Vuelo* vuelo)
 {
     int idPiloto;
     int index;
     char nombre[51];
+    Vuelo auxVuelo;
     Piloto* piloto;
     if(vuelo != NULL)
     {
-        printf("%4d%9d%9d/%d/%d%15s%11d%13d%10d",vuelo->idVuelo,vuelo->idAvion
-               ,vuelo->fecha.dia,vuelo->fecha.mes,vuelo->fecha.anio,vuelo->destino
-               ,vuelo->cantPasajeros,vuelo->horaDespegue,vuelo->horaLlegada);
+        auxVuelo = *vuelo;
+        printf("%4d%9d%9d/%d/%d%15s%11d%13d%10d",auxVuelo.idVuelo,auxVuelo.idAvion
+               ,auxVuelo.fecha.dia,auxVuelo.fecha.mes,auxVuelo.fecha.anio,auxVuelo.destino
+               ,auxVuelo.cantPasajeros,auxVuelo.horaDespegue,auxVuelo.horaLlegada);
 
         getIdPiloto(vuelo,&idPiloto);
-        index = controller_findPilotoById(listaPilotos,idPiloto);
+        index = controller_mazzucchelli_findPilotoById(listaPilotos,idPiloto);
         if(index != -1)
         {
             piloto = ll_get(listaPilotos,index);
@@ -129,7 +184,7 @@ void imprimirVueloConPiloto(LinkedList* listaPilotos,Vuelo* vuelo)
 }
 
 
-void imprimirListaVuelosConPiloto(LinkedList* listaVuelos,LinkedList* listaPilotos)
+void controller_mazzucchelli_imprimirListaVuelosConPiloto(LinkedList* listaVuelos,LinkedList* listaPilotos)
 {
     int len;
     Vuelo* vuelo;
@@ -141,13 +196,12 @@ void imprimirListaVuelosConPiloto(LinkedList* listaVuelos,LinkedList* listaPilot
         for(i=0;i<len;i++)
         {
             vuelo = ll_get(listaVuelos,i);
-            imprimirVueloConPiloto(listaPilotos,vuelo);
+            controller_mazzucchelli_imprimirVueloConPiloto(listaPilotos,vuelo);
         }
     }
 }
 
-
-int cantPasajeros(void* vuelo)
+int controller_mazzucchelli_cantPasajeros(void* vuelo)
 {
     int ret;
 
@@ -158,14 +212,13 @@ int cantPasajeros(void* vuelo)
     }
     return ret;
 }
-int cantPasajerosIrlanda(void* vuelo)
+int controller_mazzucchelli_cantPasajerosIrlanda(void* vuelo)
 {
     int ret = 0;
     char destino[21];
     if (vuelo != NULL)
     {
         vuelo = (Vuelo*) vuelo;
-
         getDestino(vuelo,destino);
         if(strcmp(destino,"Irlanda")==0)
         {
@@ -175,31 +228,7 @@ int cantPasajerosIrlanda(void* vuelo)
     return ret;
 }
 
-int vuelosCortos(void* vuelo)
-{
-    int ret = 0;
-    int duracion;
-    int horaLlegada;
-    int horaDespegue;
-
-    if (vuelo != NULL)
-    {
-        vuelo = (Vuelo*)vuelo;
-        getHoraLlegada(vuelo,&horaLlegada);
-        getHoraDespegue(vuelo,&horaDespegue);
-
-        duracion = horaLlegada - horaDespegue;
-        if(duracion < 3)
-        {
-            ret = 1;
-        }
-    }
-
-    return ret;
-}
-
-
-int vuelosCortosCsv(char* path,LinkedList* listaVuelos)
+int controller_mazzucchelli_vuelosCortosCsv(char* path,LinkedList* listaVuelos)
 {
     FILE* pFile;
     int ret = 1;
@@ -207,11 +236,11 @@ int vuelosCortosCsv(char* path,LinkedList* listaVuelos)
 
     if(listaVuelos != NULL)
     {
-        nuevaLista = ll_filter(listaVuelos,vuelosCortos);
+        nuevaLista = ll_filter(listaVuelos,vuelo_vuelosCortos);
         pFile = fopen(path,"w");
         if(pFile != NULL)
         {
-            ret = controller_listToText(nuevaLista,pFile);
+            ret = controller_mazzucchelli_listToText(nuevaLista,pFile);
             fclose(pFile);
         }
         ll_deleteLinkedList(nuevaLista);
@@ -219,43 +248,7 @@ int vuelosCortosCsv(char* path,LinkedList* listaVuelos)
     return ret;
 }
 
-int vuelosPortugal(void* vuelo)
-{
-    int ret = 0;
-    char destino[31];
-
-    if (vuelo != NULL)
-    {
-        vuelo = (Vuelo*) vuelo;
-
-        getDestino(vuelo,destino);
-        if(strcmp(destino,"Portugal")==0)
-        {
-            ret = 1;
-        }
-    }
-    return ret;
-}
-
-int sinAlexLifeson(void* vuelo)
-{
-    int ret = 0;
-    int id;
-
-    if (vuelo != NULL)
-    {
-        vuelo = (Vuelo*) vuelo;
-
-        getIdPiloto(vuelo,&id);
-        if(id != 1)
-        {
-            ret = 1;
-        }
-    }
-    return ret;
-}
-
-void imprimirMenu()
+void controller_mazzucchelli_imprimirMenu()
 {
     printf("1. Cargar archivos\n");
     printf("2. imprimir vuelos\n");
@@ -264,10 +257,11 @@ void imprimirMenu()
     printf("5. Filtrar vuelos cortos\n");
     printf("6. Listar vuelos a Portugal\n");
     printf("7. Filtrar a Alex Lifeson\n");
-    printf("8. Salir\n");
+    printf("8. Filtrar pilotos por nombre\n");
+    printf("9. Salir\n");
 }
 
-void succes(int ret,char succes[],char error[])
+void controller_mazzucchelli_succes(int ret,char succes[],char error[])
 {
     if(ret == 0)
     {
@@ -279,7 +273,7 @@ void succes(int ret,char succes[],char error[])
     }
 }
 
-void succesP(void* element,char succes[],char error[])
+void controller_mazzucchelli_succesP(void* element,char succes[],char error[])
 {
     if(element != NULL)
     {
@@ -292,6 +286,39 @@ void succesP(void* element,char succes[],char error[])
 }
 
 
+int controller_mazzucchelli_filtroPilotos(void* piloto, char* cadena)
+{
+    int ret = 0;
+    char nombre[51];
+    if(piloto != NULL)
+    {
+        piloto = (Piloto*) piloto;
+        getNombreP(piloto,nombre);
+        if(strcmp(nombre,cadena)!=0)
+        {
+            ret = 1;
+        }
+    }
+    return ret;
+}
 
+
+int controller_mazzucchelli_filtrarPilotoPorNombre(LinkedList* listaPilotos)
+{
+    int ret = 1;
+    char cadena[51];
+    LinkedList* nuevaLista;
+
+    if(listaPilotos != NULL)
+    {
+        getString("Ingresar nommbre del piloto a filtrar:",cadena);
+        nuevaLista = ll_filterParametro(listaPilotos,cadena,controller_mazzucchelli_filtroPilotos);
+        controller_mazzucchelli_imprimirListaPilotos(nuevaLista);
+        controller_mazzucchelli_listPilotoToText(nuevaLista,"pilotoFiltrado.csv");
+        ret = 0;
+        ll_deleteLinkedList(nuevaLista);
+    }
+    return ret;
+}
 
 

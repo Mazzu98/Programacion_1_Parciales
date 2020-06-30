@@ -18,12 +18,14 @@ int parser_vueloFromText(FILE* pFile, LinkedList* lista)
         fscanf(pFile,"%[^\n]\n",auxString);
         while(!feof(pFile))
         {
-            fscanf(pFile,"%[^,],%[^,],%[^,],%[^/]/%[^/]/%[^,],%[^,],%[^,],%[^,],%[^\n]\n",idVuelo,idAvion,idPiloto,dia,mes,anio,destino,cantPasajeros,horaDespegue,horaLlegada);
-            setFecha(&auxFecha,atoi(dia),atoi(mes),atoi(anio));
-            aux = newVueloParametrized(idVuelo,idAvion,idPiloto,auxFecha,destino,cantPasajeros,horaDespegue,horaLlegada);
-            ll_add(lista,aux);
+            if(fscanf(pFile,"%[^,],%[^,],%[^,],%[^/]/%[^/]/%[^,],%[^,],%[^,],%[^,],%[^\n]\n",idVuelo,idAvion,idPiloto,dia,mes,anio,destino,cantPasajeros,horaDespegue,horaLlegada)==10)
+            {
+                setFecha(&auxFecha,atoi(dia),atoi(mes),atoi(anio));
+                aux = newVueloParametrized(idVuelo,idAvion,idPiloto,auxFecha,destino,cantPasajeros,horaDespegue,horaLlegada);
+                ll_add(lista,aux);
+            }
+            ret = 0;
         }
-        ret = 0;
     }
     return ret;
 }
@@ -40,11 +42,14 @@ int parser_pilotoFromText(FILE* pFile,LinkedList* lista)
         fscanf(pFile,"%[^\n]\n",auxString);
         while(!feof(pFile))
         {
-            fscanf(pFile,"%[^,],%[^\n]\n",id,nombre);
-            aux = newPilotoParametrized(id,nombre);
-            ll_add(lista,aux);
+            if(fscanf(pFile,"%[^,],%[^\n]\n",id,nombre)==2)
+            {
+                aux = newPilotoParametrized(id,nombre);
+                ll_add(lista,aux);
+            }
+            ret = 0;
         }
-        ret = 0;
+
     }
     return ret;
 }

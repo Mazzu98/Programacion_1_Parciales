@@ -37,11 +37,65 @@ void imprimirVuelo(Vuelo* vuelo)
         printf("%4d%9d%9d%9d/%d/%d%15s%11d%13d%10d\n",aux.idVuelo,aux.idAvion,aux.idPiloto
                ,aux.fecha.dia,aux.fecha.mes,aux.fecha.anio,aux.destino
                ,aux.cantPasajeros,aux.horaDespegue,aux.horaLlegada);
-        /*
-        printf("%4d%9d%9d%9d/%d/%d%15s%11d%13d%10d\n",vuelo->idVuelo,vuelo->idAvion,vuelo->idPiloto
-               ,vuelo->fecha.dia,vuelo->fecha.mes,vuelo->fecha.anio,vuelo->destino
-               ,vuelo->cantPasajeros,vuelo->horaDespegue,vuelo->horaLlegada);*/
     }
+}
+
+int vuelo_vuelosPortugal(void* vuelo)
+{
+    int ret = 0;
+    char destino[31];
+
+    if (vuelo != NULL)
+    {
+        vuelo = (Vuelo*) vuelo;
+
+        getDestino(vuelo,destino);
+        if(strcmp(destino,"Portugal")==0)
+        {
+            ret = 1;
+        }
+    }
+    return ret;
+}
+
+int vuelo_sinAlexLifeson(void* vuelo)
+{
+    int ret = 0;
+    int id;
+
+    if (vuelo != NULL)
+    {
+        vuelo = (Vuelo*) vuelo;
+
+        getIdPiloto(vuelo,&id);
+        if(id != 1)
+        {
+            ret = 1;
+        }
+    }
+    return ret;
+}
+
+int vuelo_vuelosCortos(void* vuelo)
+{
+    int ret = 0;
+    int duracion;
+    int horaLlegada;
+    int horaDespegue;
+
+    if (vuelo != NULL)
+    {
+        vuelo = (Vuelo*)vuelo;
+        getHoraLlegada(vuelo,&horaLlegada);
+        getHoraDespegue(vuelo,&horaDespegue);
+
+        duracion = horaLlegada - horaDespegue;
+        if(duracion < 3)
+        {
+            ret = 1;
+        }
+    }
+    return ret;
 }
 
 //*******************GETTERS***************************

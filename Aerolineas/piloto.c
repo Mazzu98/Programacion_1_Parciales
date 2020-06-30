@@ -1,5 +1,6 @@
 #include "piloto.h"
 #include<stdlib.h>
+#include<stdio.h>
 #include<string.h>
 
 Piloto* newPiloto()
@@ -20,7 +21,6 @@ Piloto* newPilotoParametrized(char* id,char* nombre)
     }
     return nuevo;
 }
-
 
 
 int getIdP(Piloto* piloto,int* id)

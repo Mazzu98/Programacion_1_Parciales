@@ -628,3 +628,31 @@ LinkedList* ll_filter(LinkedList* this, int(*fn)(void* element))
     }
     return nuevaLista;
 }
+
+LinkedList* ll_filterParametro(LinkedList* this,char* cadena, int(*fn)(void* element, char* cadena))
+{
+    LinkedList* nuevaLista = NULL;
+    int len;
+    int i;
+    int funRet;
+    void* element;
+    if(this != NULL && fn != NULL)
+    {
+        len = ll_len(this);
+        nuevaLista = ll_newLinkedList();
+        if(nuevaLista != NULL)
+        {
+            for(i=0;i<len;i++)
+            {
+                element = ll_get(this,i);
+                funRet = fn(element,cadena);
+                if(funRet == 1)
+                {
+                    ll_add(nuevaLista,element);
+                }
+            }
+        }
+    }
+    return nuevaLista;
+}
+

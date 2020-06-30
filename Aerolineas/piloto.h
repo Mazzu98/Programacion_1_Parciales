@@ -1,4 +1,4 @@
-
+#include"LinkedList.h"
 typedef struct
 {
     int id;
@@ -12,3 +12,4 @@ int getIdP(Piloto* ,int* );
 int getNombreP(Piloto* ,char* );
 int setIdP(Piloto* ,int );
 int setNombreP(Piloto* ,char* );
+
